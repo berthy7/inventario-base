@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <title>Proyecto Base | Devs</title>
+        <link rel="icon" href="/resources/favicon.ico" type="image/x-icon">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+        <link href="/resources/template/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/resources/template/plugins/node-waves/waves.css" rel="stylesheet" />
+        <link href="/resources/template/plugins/animate-css/animate.css" rel="stylesheet" />
+        <link href="/resources/template/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+        <link href="/resources/template/plugins/waitme/waitMe.css" rel="stylesheet" />
+        <link href="/resources/template/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+        <link href="/resources/template/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+        <link href="/resources/plugins/sweetalert2-9.15.2/sweetalert2.css" rel="stylesheet" />
+        <link href="/resources/template/css/style.css" rel="stylesheet">
+        <link href="/resources/template/css/themes/all-themes.css" rel="stylesheet" />
+        <link href="/common/layout.style.css" rel="stylesheet">
+        {% block header %}{% end %}
+    </head>
+    <body class="theme-blue">
+        <div class="page-loader-wrapper">
+            <div class="loader">
+                <div class="preloader">
+                    <div class="spinner-layer pl-blue">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Espere por favor...</p>
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+
+        {% include _topbar.html %}
+        {% include _navbar.html %}
+
+        <section class="content">
+            <div class="container-fluid">
+                {% block content %}{% end %}
+            </div>
+        </section>
+
+        <script src="/resources/template/plugins/jquery/jquery.min.js"></script>
+        <script src="/resources/template/plugins/bootstrap/js/bootstrap.js"></script>
+        <script src="/resources/template/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+        <script src="/resources/template/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+        <script src="/resources/template/plugins/node-waves/waves.js"></script>
+        <script src="/resources/template/plugins/autosize/autosize.js"></script>
+        <script src="/resources/template/plugins/momentjs/moment.js"></script>
+        <script src="/resources/template/plugins/jquery-countto/jquery.countTo.js"></script>
+        <script src="/resources/template/plugins/raphael/raphael.min.js"></script>
+        <script src="/resources/template/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+        <script src="/resources/template/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+        <script src="/resources/template/plugins/bootstrap-notify/bootstrap-notify.js"></script>
+        <script src="/resources/plugins/sweetalert2-9.15.2/sweetalert2.js"></script>
+
+        <script src="/resources/template/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+        <script src="/resources/template/js/admin.js"></script>
+        <script src="/resources/template/js/pages/forms/basic-form-elements.js"></script>
+        <script src="/resources/template/js/pages/index.js"></script>
+        <script src="/resources/template/js/demo.js"></script>
+        <script src="/resources/template/js/script.js"></script>
+        <script src="/resources/static/js/validations.js"></script>
+        <script src="/resources/static/js/global.action.js"></script>
+        <script src="/common/layout.action.js"></script>
+        {% block footer %}{% end %}
+    </body>
+</html>

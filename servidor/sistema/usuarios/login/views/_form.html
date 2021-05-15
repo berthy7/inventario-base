@@ -1,0 +1,30 @@
+<form id="sign_in">
+    <div id="msg-info" class="msg">Ingresa tus credenciales para iniciar sesión.</div>
+
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">person</i>
+        </span>
+        <div class="form-line">
+            {% module xsrf_form_html() %}
+            <input type="text" class="form-control" id="username" name="username" placeholder="Usuario" required autofocus>
+        </div>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">lock</i>
+        </span>
+        <div class="form-line">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <span class="input-group-addon">
+            <i id="cont-eye" class="material-icons">visibility</i>
+        </span>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-lg-offset-3">
+            <button id="btn-login" class="btn btn-block bg-blue waves-effect" type="button">INICIAR</button>
+        </div>
+    </div>
+</form>

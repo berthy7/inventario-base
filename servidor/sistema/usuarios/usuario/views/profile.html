@@ -1,0 +1,53 @@
+{% extends ../../../../common/views/layout.html %}
+
+{% block header %}
+    {% set user = usuario %}
+    <link rel="stylesheet" href="/usuarios/usuario/assets/perfil.style.css">
+{% end %}
+
+{% block content %}
+    <div class="block-header">
+        <h2 class="text-uppercase">Perfil de Usuario</h2>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12">
+            <div class="card">
+                <div class="body">
+                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#profile_tab" data-toggle="tab">Datos del Usuario</a>
+                        </li>
+                        {% if dtuser.persona %}
+                        <li role="presentation">
+                            <a href="#editdt_tab" data-toggle="tab">Editar Información</a>
+                        </li>
+                        {% end %}
+                        <li role="presentation">
+                            <a href="#credential_tab" data-toggle="tab">Modificar Credenciales</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane animated fadeInRight active" id="profile_tab">
+                            {% include _userinfo.html %}
+                        </div>
+                        {% if dtuser.persona %}
+                        <div role="tabpanel" class="tab-pane animated fadeInRight" id="editdt_tab">
+                            {% include _editdata.html %}
+                        </div>
+                        {% end %}
+                        <div role="tabpanel" class="tab-pane animated fadeInRight" id="credential_tab">
+                            {% include _updcredential.html %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block footer %}
+    <script src="/resources/static/js/functions.js"></script>
+    <script src="/usuarios/usuario/assets/perfil.action.js"></script>
+{% end %}

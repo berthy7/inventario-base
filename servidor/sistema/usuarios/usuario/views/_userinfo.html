@@ -1,0 +1,30 @@
+<div class="header">
+    <h2>
+        <span class="text-uppercase">{{ dtuser.rol.nombre }}</span>
+        <small>{{ dtuser.username }}</small>
+    </h2>
+</div>
+<div class="body">
+    <div class="media">
+        <div class="media-left">
+            <a href="javascript:void(0)">
+                <img class="media-object" src="/resources/static/images/user-icon.png" width="64" height="64" alt="imagen" />
+            </a>
+        </div>
+        <div class="media-body">
+            {% set estado = 'Activo' if dtuser.enabled else 'Inhabilitado' %}
+            {% set nulos = ['', '0', 0, None] %}
+            {% if dtuser.persona %}
+                <p>{{ dtuser.persona.fullname }}</p>
+                <p>{{ dtuser.persona.email }}</p>
+                {% if dtuser.persona.ci not in nulos %}
+                    <p>C.I. {{ dtuser.persona.ci }}</p>
+                {% end %}
+                {% if dtuser.persona.telefono not in nulos %}
+                    <p>{{ dtuser.persona.telefono }}</p>
+                {% end %}
+            {% end %}
+            <p>{{ estado }}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+{% extends ../../../../common/views/layout.html %}
+
+{% block header %}
+    {% set user = usuario %}
+    <link rel="stylesheet" href="/negocio/sucursal/assets/sucursal.style.css">
+{% end %}
+
+{% block content %}
+    {% if 'sucursal_insert' in privileges or 'sucursal_update' in privileges %}
+        {% include _form.html %}
+    {% end %}
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <span class="text-uppercase">Sucursal</span>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <ol class="breadcrumb" style="float: right">
+                            <li><a href="/">Inicio</a></li>
+                            <li><a href="javascript:void(0);">Negocio</a></li>
+                            <li class="active"><span class="text-info">Sucursal</span></li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="body">
+                    {% if 'sucursal_insert' in privileges %}
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <button id="new" type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#modal" title="Nuevo">
+                                <i class="material-icons">add</i>
+                            </button>
+                        </div>
+                    </div>
+                    {% end %}
+
+                    <table id="data_table" class="table table-bordered table-striped table-hover"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block footer %}
+    <script src="/resources/static/js/functions.js"></script>
+    <script src="/negocio/sucursal/assets/sucursal.action.js"></script>
+{% end %}

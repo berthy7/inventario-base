@@ -1,0 +1,32 @@
+{% extends ../../../../common/views/layout.html %}
+
+{% block header %}
+    {% set user = usuario %}
+    <link rel="stylesheet" href="/usuarios/bitacora/assets/bitacora.style.css">
+{% end %}
+
+{% block content %}
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <span class="text-uppercase">Bitácora</span>
+
+                    <ol class="breadcrumb" style="float: right">
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="javascript:void(0);">Usuarios</a></li>
+                        <li class="active"><span class="text-info">Bitácora</span></li>
+                    </ol>
+                </div>
+                <div class="body">
+                    <table id="data_table" class="table table-bordered table-striped table-hover js-basic-example"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block footer %}
+    <script src="/resources/static/js/functions.js"></script>
+    <script src="/usuarios/bitacora/assets/bitacora.action.js"></script>
+{% end %}

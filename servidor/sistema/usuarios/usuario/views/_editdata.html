@@ -1,0 +1,74 @@
+<form id="form-data" class="form-horizontal">
+    <div class="row clearfix">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+            <label for="nombre_profile">Nombres</label>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div class="form-group">
+                <div class="form-line">
+                    {% module xsrf_form_html() %}
+                    <input type="hidden" id="idpersona" name="idpersona" value="{{ dtuser.persona.id }}" class="item-form">
+                    <input type="text" id="nombre_profile" name="nombre_profile" class="form-control" value="{{ dtuser.persona.nombre }}" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+            <label for="apellido_profile">Apellidos</label>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="text" id="apellido_profile" name="apellido_profile" class="form-control" value="{{ dtuser.persona.apellido }}" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+            <label for="ci_profile">C.I.</label>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="text" id="ci_profile" name="ci_profile" class="form-control" value="{{ dtuser.persona.ci }}" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+            <label for="telefono_profile">Teléfono</label>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="text" id="telefono_profile" name="telefono_profile" class="form-control" value="{{ dtuser.persona.telefono }}" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+            <label for="email_profile">Correo electrónico</label>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="email" id="email_profile" name="email_profile" class="form-control" value="{{ dtuser.persona.email }}" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+            <button id="mod-perfil" type="button" class="btn btn-primary m-t-15 waves-effect">Guardar</button>
+        </div>
+    </div>
+</form>

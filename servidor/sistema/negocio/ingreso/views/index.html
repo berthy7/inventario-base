@@ -1,0 +1,129 @@
+{% extends ../../../../common/views/layout.html %}
+
+{% block header %}
+    {% set user = usuario %}
+    <link rel="stylesheet" href="/negocio/ingreso/assets/ingreso.style.css">
+{% end %}
+
+{% block content %}
+    {% if 'ingreso_insert' in privileges or 'ingreso_update' in privileges %}
+        {% include _form.html %}
+    {% end %}
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <span class="text-uppercase">Ingreso</span>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <ol class="breadcrumb" style="float: right">
+                            <li><a href="/">Inicio</a></li>
+                            <li><a href="javascript:void(0);">Negocio</a></li>
+                            <li class="active"><span class="text-info">Ingreso</span></li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="body">
+                    {% if 'ingreso_insert' in privileges %}
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <button id="new" type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#modal" title="Nuevo">
+                                <i class="material-icons">add</i>
+                            </button>
+                        </div>
+                    </div>
+                    {% end %}
+
+                    <table id="data_table" class="table table-bordered table-striped table-hover"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block footer %}
+    <script src="/resources/static/js/functions.js"></script>
+    <script src="/negocio/ingreso/assets/ingreso.action.js"></script>
+    <script>
+        function agregar_detalle(id_in) {
+            id_itm = id_in
+            id_in = id_itm === '' ? 'n' + (gb_inc++) : id_itm;
+
+            if (!$.fn.DataTable.isDataTable('#table_detail')) {
+                tb_detail = $('#table_detail').DataTable({
+                    "bFilter": false,
+                    destroy: true,
+                    columnDefs: [
+                        {width: '15%', targets: [0, 2]}, {width: '60%', targets: [1]}, {width: '10%', targets: [3]},
+                        {"orderable": false, "targets": [0, 1, 2, 3]}
+                    ],
+                });
+            } else tb_detail = $('#table_detail').DataTable();
+
+            codigo_html = '\
+                     <div class="form-group form-float">\
+                        <div class="form-line">\
+                            <input type="hidden" id="id' + id_in + '" name="id' + id_in + '" class="detalle" value="' + id_itm + '">\
+                            <input type="text" id="codigo' + id_in + '" name="codigo' + id_in + '" class="form-control" value="--------">\
+                            <label for="codigo' + id_in + '" class="form-label"></label>\
+                        </div>\
+                    </div>'
+
+            producto_html = '\
+            <div class="form-group">\
+                <select id="fkproducto' + id_in + '" name="fkproducto' + id_in + '" data-prod="' + id_in + '" onchange="event_prod(this)" class="form-control show-tick select-product detalle" required>\
+                    {% for p in productos %}\
+                        <option data-codigo="{{ p.codigo }}" value="{{ p.id }}">{{ p.nombre }}</option>\
+                    {% end %}\
+                </select>\
+            </div>'
+
+            cantidad_html = '\
+                     <div class="form-group form-float">\
+                        <div class="form-line">\
+                            <input type="number" min="1" id="cantidad' + id_in + '" name="cantidad' + id_in + '" class="form-control detalle" value="1">\
+                            <label for="cantidad' + id_in + '" class="form-label"></label>\
+                        </div>\
+                    </div>'
+
+            accion = '<div class="form-group">\
+                   <button id="del-item' + id_in + '" type="button" name="del-item' + id_in + '" class="btn btn-danger waves-effect clear-item" data-prod="' + id_in + '" title="Eliminar">\
+                       <i class="material-icons">clear</i>\
+                   </button>\
+                </div>';
+
+            tb_detail.row.add([codigo_html, producto_html, cantidad_html, accion]).draw(false);
+
+            $('.select-product').selectpicker({
+                size: 10,
+                liveSearch: true,
+                liveSearchPlaceholder: 'Buscar producto',
+                title: 'Seleccione un producto'
+            })
+
+            $('#del-item' + id_in).parent().parent().parent().attr('id', 'tr' + id_in)
+            $(table_detail).on('click', 'tbody tr td div.form-group button#del-item' + id_in, function () {
+                console.log('TB list gb')
+                console.log(gb_prods)
+                console.log('TB list cmb')
+                console.log(gb_cmbs)
+                idrpd = $(this).attr('data-prod');
+                console.log(idrpd)
+                posdel = gb_prods.indexOf($('#fkproducto' + idrpd).val())
+                console.log(posdel)
+                if (posdel >= 0) {
+                    gb_prods.splice(posdel, 1)
+                    gb_cmbs.splice(posdel, 1)
+                }
+                setTimeout(function () {
+                    tb_detail.row('#tr' + idrpd).remove().draw(false)
+                    console.log('TB-AFT list gb')
+                    console.log(gb_prods)
+                    console.log('TB-AFT list cmb')
+                    console.log(gb_cmbs)
+                }, 250);
+            });
+        }
+    </script>
+{% end %}

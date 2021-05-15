@@ -1,0 +1,85 @@
+<section>
+    <aside id="leftsidebar" class="sidebar">
+        <!--div class="user-info">
+            <div class="image">
+                <img src="/resources/template/images/user.png" width="48" height="48" alt="User" />
+            </div>
+            <div class="info-container">
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+                <div class="email">john.doe@example.com</div>
+                <div class="btn-group user-helper-dropdown">
+                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
+                        <li><a href="javascript:void(0);"><i class="material-icons">input</i>Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div-->
+
+        <div class="menu">
+            <ul class="list">
+                <li class="header">NAVEGACIÓN</li>
+
+                {% for mods in user.rol.modulos %}
+                    {% set mods = [mods] %}
+                    {% set parents_ids = [] %}
+
+                    {% while len(mods) > 0 %}
+                        {% set module = mods.pop() %}
+
+                        {% if not module.menu %}
+                            {% set continue %}
+                        {% end %}
+
+                        {% while len(parents_ids) > 0 and parents_ids[-1] != module.fkmodulo %}
+                                </ul>
+                            </li>
+                            {% set del(parents_ids[-1]) %}
+                        {% end %}
+
+                        {% if module.ruta %}
+                            {% set url = module.ruta %}
+                        {% else %}
+                            {% set url = '#' %}
+                        {% end %}
+
+                        {% if len(module.children) <= 0 or url != '#' %}
+                            {% if module.nombre != 'perfil' %}
+                            <li>
+                                <a href="{{ url }}" class="">
+                                    <span>{{ module.titulo }}</span>
+                                </a>
+                            </li>
+                            {% end %}
+                        {% else %}
+                            {% set mods.extend(module.children[::-1]) %}
+                            {% set parents_ids.append(module.id) %}
+
+                            <li>
+                                <a href="{{ url }}" class="menu-toggle">
+                                    <i class="material-icons">{{ module.icono }}</i>
+                                    <span>{{ module.titulo }}</span>
+                                </a>
+                                <ul class="ml-menu">
+                        {% end %}
+                    {% end %}
+
+                    {% if len(parents_ids) > 0  %}
+                            </ul>
+                        </li>
+                    {% end %}
+                {% end %}
+            </ul>
+        </div>
+
+        <div class="legal">
+            <div class="copyright">
+                &copy; 2020 <a href="javascript:void(0);">Proyecto Base - Devs</a>.
+            </div>
+            <div class="version">
+                <b>Version: </b> 0.0.1
+            </div>
+        </div>
+    </aside>
+</section>

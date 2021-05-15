@@ -1,0 +1,55 @@
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog md-dialog-70-own" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="largeModalLabel">Ingreso</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            {% module xsrf_form_html() %}
+                            <input type="hidden" id="id" name="id" class="item-form">
+                            <textarea id="descripcion" name="descripcion" rows="1" class="form-control no-resize auto-growth item-form" required></textarea>
+                            <label for="descripcion" class="form-label">Descripción</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fksucursal" class="form-label">Sucursal</label>
+                        <select id="fksucursal" name="Sucursal" class="form-control show-tick item-form" required>
+                            {% for s in sucursales %}
+                                <option value="{{ s.id }}">{{ s.nombre }}</option>
+                            {% end %}
+                        </select>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <h6 id="cliente_enable" class="">Detalle de los productos a ingresar</h6>
+                            <button id="insertar_detalle" type="button" class="btn btn-primary waves-effect agregar_detalle m-t-5 m-b-15" title="Agregar">
+                                <i class="material-icons">add</i>
+                            </button>
+                            <table id="table_detail" class="table table-bordered table-striped table-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Item</th>
+                                        <th>Cantidad</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="insert" type="button" class="btn btn-primary waves-effect">Guardar</button>
+                <button id="update" type="button" class="btn btn-primary waves-effect">Guardar</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

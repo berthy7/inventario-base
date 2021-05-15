@@ -1,0 +1,7 @@
+.top-body>.slimScrollDiv { height: 76px !important; }
+.top-body>.slimScrollDiv>.menu { height: 76px !important; }
+.item-top { margin-left: 50px !important; }
+.mn-inf-own { display: flex !important; }
+.swal2-title { font-size: 1.2em !important; }
+.mr-3-own { margin-right: 3px; }
+.md-dialog-70-own { min-width: 70% !important; }

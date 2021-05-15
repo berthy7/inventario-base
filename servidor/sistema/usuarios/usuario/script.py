@@ -55,7 +55,7 @@ def insertions():
         super_user = session.query(Usuario).filter(Usuario.username == 'admin').first()
 
         if super_user is None:
-            hex_dig = hashlib.sha512(b'ProBase2020').hexdigest()
+            hex_dig = hashlib.sha512(b'Inventario2021').hexdigest()
             super_user = Usuario(username='admin', password=hex_dig)
             super_user.rol = super_role
 
